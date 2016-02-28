@@ -6,7 +6,7 @@ function GameView(width, height, timeStep) {
   this.timeStep = timeStep
   this.context = this.canvas.getContext("2d")
   this.updateFunction = function(){}
-  
+
   this.gravityForce =  10
 
   this.setPlacement = function(placement){
@@ -50,6 +50,7 @@ function Component(view, width, height, color, x, y) {
 
   // toggles
   this.gravity = false
+  this.keepInsideCanvas = false
 
   // Force Vectors
   this.xAxisForce = 0
@@ -66,6 +67,10 @@ function Component(view, width, height, color, x, y) {
       this.y -= (this.yAxisForce * this.view.timeStep^2)/2/1000
     }
 
+    // Keep object inside canvas
+    if(this.keepInsideCanvas)
+      this.keepInside()
+
     // Draw object
     this.drawShape()
   }
@@ -74,5 +79,25 @@ function Component(view, width, height, color, x, y) {
   this.drawShape = function(){
     this.ctx.fillStyle = color
     this.ctx.fillRect(this.x, this.y, this.width, this.height)
+  }
+
+  // Keep Object inside canvas
+  this.keepInside = function() {
+    if (this.x + this.width > this.view.canvas.width){
+      this.x = this.view.canvas.width - this.width
+      this.xAxisForce = 0
+    }
+    if (this.y + this.height > this.view.canvas.height){
+      this.y = this.view.canvas.height - this.height
+      this.yAxisForce = 0
+    }
+    if (this.y < 0){
+      this.y = 0
+      this.yAxisForce = 0
+    }
+    if (this.x < 0){
+      this.x = 0
+      this.xAxisForce = 0
+    }
   }
 }

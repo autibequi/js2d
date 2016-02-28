@@ -17,6 +17,7 @@ canvas {
     // Components
     var player = new Component(gameview, 30, 30, 'red', 50, 50)
     player.gravity = true
+    player.keepInsideCanvas = true
 
     // Update Function
     var basicLoop = function () {
