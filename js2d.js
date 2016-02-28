@@ -7,6 +7,7 @@ function GameView(width, height, timeStep) {
   this.context = this.canvas.getContext("2d")
   this.updateFunction = function(){}
   this.frameNo = 0
+  this.isPaused = false
   this.gravityForce =  10
 
   this.setPlacement = function(placement){
@@ -37,8 +38,13 @@ function GameView(width, height, timeStep) {
   this.start = function() {
     var currentView = this
     this.interval = setInterval(function() {
-      currentView.update(currentView)
+      if (!currentView.isPaused)
+        currentView.update(currentView)
     }, this.timeStep)
+  }
+
+  this.pause = function() {
+    this.isPaused = !this.isPaused
   }
 }
 
