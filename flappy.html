@@ -1,0 +1,23 @@
+<style>
+canvas {
+    border: 1px solid #d3d3d3;
+    background-color: #f1f1f1;
+}
+</style>
+
+<script src="js2d.js"></script>
+
+<script>
+  // start the game
+  function startGame() {
+    // Define GameView
+    var gameview = new GameView(600, 300, 20)
+
+    // Setup gameview
+    gameview.setPlacement(document.body)
+    gameview.start()
+  }
+</script>
+
+<body onload="startGame()">
+</body>
