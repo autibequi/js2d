@@ -111,4 +111,13 @@ function Component(view, width, height, color, x, y) {
       this.xAxisForce = 0
     }
   }
+
+  // Checks colission with another component
+  this.checkColision = function (obj) {
+    // Exit with no intersection if found separated along an axis
+    if(this.x > obj.x + obj.width  || this.x + this.width  < obj.x) return false
+    if(this.y > obj.y + obj.height || this.y + this.height < obj.y) return false
+    // No separating axis found, therefor there is at least one overlapping axis
+    return true
+  }
 }
