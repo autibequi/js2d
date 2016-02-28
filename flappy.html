@@ -50,6 +50,9 @@ canvas {
         obstacle.x -= 3
         // Update and draw the obstacle
         obstacle.draw()
+        // check colision
+        if (obstacle.checkColision(player))
+          gameview.pause()
       })
 
       // Adds more Obstacles
