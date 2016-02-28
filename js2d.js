@@ -6,7 +6,7 @@ function GameView(width, height, timeStep) {
   this.timeStep = timeStep
   this.context = this.canvas.getContext("2d")
   this.updateFunction = function(){}
-
+  this.frameNo = 0
   this.gravityForce =  10
 
   this.setPlacement = function(placement){
@@ -27,6 +27,11 @@ function GameView(width, height, timeStep) {
       this.frameNo = 0
     this.frameNo += 1
     this.context.clearRect(0,0, this.canvas.width, this.canvas.height)
+  }
+
+  this.everyInterval = function(n) {
+    if ((this.frameNo / n) % 1 == 0) return true
+      return false
   }
 
   this.start = function() {
