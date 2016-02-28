@@ -16,7 +16,15 @@ function GameView(width, height, timeStep) {
   }
 
   this.update = function(currentView) {
+    this.clear()
     currentView.updateFunction()
+  }
+
+  this.clear = function() {
+    if (this.frameNo > 1000)
+      this.frameNo = 0
+    this.frameNo += 1
+    this.context.clearRect(0,0, this.canvas.width, this.canvas.height)
   }
 
   this.start = function() {
