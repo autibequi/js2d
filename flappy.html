@@ -13,8 +13,18 @@ canvas {
     // Define GameView
     var gameview = new GameView(600, 300, 20)
 
+    // Components
+    var player = new Component(gameview, 30, 30, 'red', 50, 50)
+
+    // Update Function
+    var basicLoop = function () {
+      // Draw the caracther
+      player.draw()
+    }
+
     // Setup gameview
     gameview.setPlacement(document.body)
+    gameview.setUpdateFunction(basicLoop)
     gameview.start()
   }
 </script>

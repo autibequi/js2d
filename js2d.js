@@ -26,3 +26,30 @@ function GameView(width, height, timeStep) {
     }, this.timeStep)
   }
 }
+
+// Basic 2D Component
+function Component(view, width, height, color, x, y) {
+  // define current view
+  this.view = view
+
+  // Object Properties
+  this.width = width
+  this.height = height
+  this.x = x
+  this.y = y
+
+  // Set Context
+  this.ctx = this.view.context
+
+  // Draw Component Callback
+  this.draw = function() {
+    // Draw object
+    this.drawShape()
+  }
+
+  // Draw Object
+  this.drawShape = function(){
+    this.ctx.fillStyle = color
+    this.ctx.fillRect(this.x, this.y, this.width, this.height)
+  }
+}
