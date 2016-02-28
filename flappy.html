@@ -12,9 +12,11 @@ canvas {
   function startGame() {
     // Define GameView
     var gameview = new GameView(600, 300, 20)
+    gameview.gravityForce = 20
 
     // Components
     var player = new Component(gameview, 30, 30, 'red', 50, 50)
+    player.gravity = true
 
     // Update Function
     var basicLoop = function () {

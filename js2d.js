@@ -7,6 +7,8 @@ function GameView(width, height, timeStep) {
   this.context = this.canvas.getContext("2d")
   this.updateFunction = function(){}
   
+  this.gravityForce =  10
+
   this.setPlacement = function(placement){
     placement.insertBefore(this.canvas, placement.childNodes[0])
   }
@@ -46,11 +48,24 @@ function Component(view, width, height, color, x, y) {
   this.x = x
   this.y = y
 
+  // toggles
+  this.gravity = false
+
+  // Force Vectors
+  this.xAxisForce = 0
+  this.yAxisForce = 0
+
   // Set Context
   this.ctx = this.view.context
 
   // Draw Component Callback
   this.draw = function() {
+    // Simulate Gravity
+    if(this.gravity){
+      this.yAxisForce -= this.view.gravityForce
+      this.y -= (this.yAxisForce * this.view.timeStep^2)/2/1000
+    }
+
     // Draw object
     this.drawShape()
   }
