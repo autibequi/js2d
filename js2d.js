@@ -112,6 +112,15 @@ function Component(view, width, height, color, x, y) {
     }
   }
 
+  // Checks if the object is ouside the canvas
+  this.isOutsideCanvas = function() {
+    if(this.x + width < 0 || this.y + height < 0)
+      return true
+        if(this.xthis > view.width || this.y > view.height)
+          return true
+            return false
+  }
+  
   // Checks colission with another component
   this.checkColision = function (obj) {
     // Exit with no intersection if found separated along an axis

@@ -50,6 +50,9 @@ canvas {
         obstacle.x -= 3
         // Update and draw the obstacle
         obstacle.draw()
+        // Remove obstacle if outside the canvas
+        if (obstacle.isOutsideCanvas())
+          delete obstacles[index]
         // check colision
         if (obstacle.checkColision(player))
           gameview.pause()
