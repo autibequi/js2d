@@ -67,6 +67,15 @@ canvas {
     gameview.setPlacement(document.body)
     gameview.setUpdateFunction(basicLoop)
     gameview.start()
+
+    // Add listener to space
+    function getKey(e) {
+      if (e.keyCode == 32) {
+        player.yAxisForce = 600
+      }
+    }
+
+    document.onkeydown = getKey;
   }
 </script>
 
