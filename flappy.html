@@ -14,15 +14,47 @@ canvas {
     var gameview = new GameView(600, 300, 20)
     gameview.gravityForce = 20
 
+    // Create obstacles Factory
+    function injectObstable(obstaclesArray) {
+      var offset = 40
+      var holeHeight = 100
+      var delta = gameview.canvas.height - 2*offset - holeHeight
+      var randomHoleLocation = Math.floor((Math.random() * delta) + 1);
+      var width = 10
+
+      var bottomBarHeight = randomHoleLocation + offset
+      var topBarHeight = gameview.canvas.height - bottomBarHeight - holeHeight
+
+      var ground = gameview.canvas.height - bottomBarHeight
+      var celling = 0
+      var hidden_x = gameview.canvas.width
+
+      obstaclesArray.push(new Component(gameview, width, topBarHeight, 'green', hidden_x, celling))
+      obstaclesArray.push(new Component(gameview, width, bottomBarHeight, 'green', hidden_x, ground))
+    }
+
     // Components
     var player = new Component(gameview, 30, 30, 'red', 50, 50)
     player.gravity = true
     player.keepInsideCanvas = true
 
     // Update Function
+    var obstacles = []
     var basicLoop = function () {
       // Draw the caracther
       player.draw()
+
+      // Draw obstacles positions
+      obstacles.forEach(function(obstacle, index) {
+        // Move obstacle
+        obstacle.x -= 3
+        // Update and draw the obstacle
+        obstacle.draw()
+      })
+
+      // Adds more Obstacles
+      if (gameview.everyInterval(100))
+        injectObstable(obstacles)
     }
 
     // Setup gameview
